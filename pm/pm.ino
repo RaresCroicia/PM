@@ -47,25 +47,26 @@ void sendData(double temp, double humi) {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Data Sent");
-  Serial.println("Begin");
-  Serial.println(temp);
-  if(temp > 50 && temp < 75)
-    Serial.println("Good");
+  Serial.write("Begin");
+  Serial.print(temp);
+  if(temp > 20 && temp < 30)
+    Serial.print("Good");
   else
-    Serial.println("Bad");
-  Serial.println(humi);
-  if(humi > 60 && humi < 95)
-    Serial.println("Good");
+    Serial.print("Bad");
+  Serial.print(humi);
+  if(humi > 59 && humi < 81)
+    Serial.print("Good");
   else
-    Serial.println("Bad");
+    Serial.print("Bad");
     
-  Serial.println("End");
+  Serial.print("End");
   delay(2000);
   // Create the protocol for Serial Send so data doesn't get lost
 }
 
 void printToLCD() {
   if(timer == 0) {
+    tone(buzzerPin, 3000, 50);
     sendData(temperature, humidity);
   } else {
     lcd.clear();
